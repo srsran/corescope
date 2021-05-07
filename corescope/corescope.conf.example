@@ -1,0 +1,75 @@
+#####################################################################
+#                   SRS Corescope configuration file
+#
+# Corescope directly connects to the core network, combining the
+# components of gNB and UE without need for a radio layer.
+#####################################################################
+
+
+#####################################################################
+# API configuration
+# bind_addr:        Bind address # needs to be fixed
+# bind_port:        Bind port # need to be fixed
+# log_level:        Logging levels: debug, info, warning, error, none
+# log_hex_limit:    Log level max hex limit
+#####################################################################
+[api]
+bind_addr = "0.0.0.0"
+bind_port = 8000
+log_level = info 
+log_hex_limit = 32
+
+#####################################################################
+# Log configuration
+#
+# main_log:         Logfile for the main application
+# Log levels can be set for individual layers. "all_level" sets log
+# level for all layers unless otherwise configured.
+# Format: e.g. phy_level = info
+#
+# In the same way, packet hex dumps can be limited for each level.
+# "all_hex_limit" sets the hex limit for all layers unless otherwise
+# configured.
+# Format: e.g. phy_hex_limit = 32
+#
+# Logging layers: pdcp, pdcp, rrc, all
+# Logging levels: debug, info, warning, error, none
+#
+# filename:      File path to use for log output. Can be set to stdout
+#                  to print logs to standard output
+# file_max_size: Maximum file size (in kilobytes). When passed, multiple files are created.
+#                  If set to negative, a single log file will be created.
+#####################################################################
+[log]
+main_log        = /tmp/corescope.log
+
+all_level     = warning
+all_hex_limit = 32
+file_max_size = -1
+
+#####################################################################
+# gNB configuration
+#
+# enable:         gNB is enabled (default: true)
+# gnb_id:         20-bit gNB identifier.
+# cell_id:        8-bit cell identifier.
+# tac:            16-bit Tracking Area Code.
+# mcc:            Mobile Country Code
+# mnc:            Mobile Network Code
+#
+# amf_addr:       IP address of the AMF for NGAP connnection
+# n1c_bind_addr:  Local IP address to bind for NGAP connection
+# gtp_bind_addr:  Local IP address to bind for GTP connection
+
+#####################################################################
+[gnb]
+gnb_id  = 0x19B
+name    = "srsgnb"
+cell_id = 0x01
+tac     = 0x0007
+mcc     = 001
+mnc     = 01
+
+amf_addr      = 192.168.56.101
+n1c_bind_addr = 192.168.56.1
+gtp_bind_addr = 192.168.56.1
